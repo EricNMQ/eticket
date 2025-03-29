@@ -4,7 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 using System.IO;
 using System.Threading.Tasks;
 
-public class EmailMarketingController : Controller
+namespace eTickets.Controllers
+{
+  public class EmailMarketingController : Controller
 {
     private readonly EmailService _emailService;
 
@@ -29,7 +31,7 @@ public class EmailMarketingController : Controller
         }
 
         string templatePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Templates/EmailTemplate.html");
-        string link = "https://your-marketing-link.com"; // Link khuyến mãi
+        string link = "https://your-marketing-link.com/"; // Link khuyến mãi
 
         string emailContent = await _emailService.LoadEmailTemplateAsync(templatePath, model.Name, link);
         await _emailService.SendEmailAsync(model.Email, "Ưu đãi đặc biệt cho bạn!", emailContent);
@@ -37,4 +39,6 @@ public class EmailMarketingController : Controller
         ViewBag.Message = "Email đã được gửi thành công!";
         return View();
     }
+}
+
 }

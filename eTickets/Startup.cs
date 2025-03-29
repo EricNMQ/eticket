@@ -49,8 +49,6 @@ namespace eTickets
 
             // Configure VNPay
             services.AddScoped<IVnPayService,VNPayService>();
-
-            // EmailSevice
             services.AddSingleton<EmailService>();
 
             //Authentication and authorization
